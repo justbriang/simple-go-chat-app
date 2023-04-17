@@ -1,4 +1,4 @@
-module wsstarter
+module github/justbriang/wsstarter
 
 go 1.18
 

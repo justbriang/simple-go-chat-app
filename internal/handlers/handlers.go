@@ -10,10 +10,10 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-//payloads for websocket
+// payloads for websocket
 var wsChan = make(chan WsPayload)
 
-//list of clients online
+// list of clients online
 var clients = make(map[WsConnection]string)
 
 var views = jet.NewSet(
@@ -21,7 +21,7 @@ var views = jet.NewSet(
 	jet.InDevelopmentMode(),
 )
 
-//upgrade regular http connection to websocket
+// upgrade regular http connection to websocket
 var upgradeConnection = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -39,7 +39,7 @@ type WsConnection struct {
 	*websocket.Conn
 }
 
-//defines response sent back from a websocket connection
+// defines response sent back from a websocket connection
 type WsResponse struct {
 	Action         string   `json:"action"`
 	Message        string   `json:"message"`
@@ -47,7 +47,7 @@ type WsResponse struct {
 	ConnectedUsers []string `json:"connected_users"`
 }
 
-//defines typical payload sent from/to a websocket connection
+// defines typical payload sent from/to a websocket connection
 type WsPayload struct {
 	Action      string       `json:"action"`
 	Username    string       `json:"username"`
@@ -55,7 +55,7 @@ type WsPayload struct {
 	currentConn WsConnection `json:"_"`
 }
 
-//upgrades connection to websocket
+// upgrades connection to websocket
 func WsEndpoint(w http.ResponseWriter, r *http.Request) {
 	ws, err := upgradeConnection.Upgrade(w, r, nil)
 	if err != nil {

@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github/justbriang/wsstarter/internal/handlers"
 	"log"
 	"net/http"
-	"wsstarter/internal/handlers"
 )
 
 func main() {
@@ -14,6 +14,9 @@ func main() {
 	go handlers.ListenToWsChannel()
 
 	log.Println("starting web server at port 8080")
-	_ = http.ListenAndServe(":8080", routes)
+	err := http.ListenAndServe(":8080", routes)
+	if err != nil {
+		panic(err)
+	}
 
 }
