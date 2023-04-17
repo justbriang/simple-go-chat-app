@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github/justbriang/wsstarter/internal/handlers"
+	"github/justbriang/simple-go-chat-app/internal/handlers"
 	"net/http"
 
 	"github.com/bmizerany/pat"
